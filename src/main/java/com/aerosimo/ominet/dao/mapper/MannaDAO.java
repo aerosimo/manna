@@ -84,7 +84,7 @@ public class MannaDAO {
              CallableStatement stmt = con.prepareCall(sql)) {
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.execute();
-            try (ResultSet rs = (ResultSet) stmt.getObject(2)) {
+            try (ResultSet rs = (ResultSet) stmt.getObject(1)) {
                 if (rs != null && rs.next()) {
                     response = new MannaResponseDTO();
                     response.setPassage(rs.getString("passage"));
