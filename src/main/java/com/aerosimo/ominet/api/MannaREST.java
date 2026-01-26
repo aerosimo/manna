@@ -45,12 +45,13 @@ import jakarta.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@Path("/dailybread")
 public class MannaREST {
 
     private static final Logger log = LogManager.getLogger(MannaREST.class.getName());
 
     @POST
-    @Path("/overhaul")
+    @Path("/delight")
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveHoroscope() {
         try{
@@ -72,7 +73,7 @@ public class MannaREST {
     }
 
     @GET
-    @Path("/dailybread")
+    @Path("/gift")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getHoroscope() {
         MannaResponseDTO resp = MannaDAO.dailyBread();
