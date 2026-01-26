@@ -52,8 +52,7 @@ public class OurManna {
         HttpURLConnection conn;
         URL url;
         int responseCode;
-        JSONObject data;
-        JSONObject manna;
+        JSONObject verseObj, details, manna;
         try {
             apiUrl = "https://beta.ourmanna.com/api/v1/get?format=json&order=daily";
             url = new URL(apiUrl);
@@ -70,10 +69,11 @@ public class OurManna {
                 }
                 br.close();
                 manna = new JSONObject(response.toString());
-                data = manna.getJSONObject("data");
-                passage = data.getString("text");
-                verse = data.getString("reference");
-                version = data.getString("version");
+                verseObj = manna.getJSONObject("verse");
+                details = verseObj.getJSONObject("details");
+                passage = details.getString("text");
+                verse = details.getString("reference");
+                version = details.getString("version");
                 feedback = MannaDAO.saveManna(passage, verse, version);
                 log.info("{} in updating manna for today with: {} {} {}", feedback, passage, verse, version);
             } else {
