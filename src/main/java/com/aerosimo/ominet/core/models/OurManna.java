@@ -31,6 +31,7 @@
 
 package com.aerosimo.ominet.core.models;
 
+import com.aerosimo.ominet.core.config.Connect;
 import com.aerosimo.ominet.dao.mapper.MannaDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,7 +55,7 @@ public class OurManna {
         int responseCode;
         JSONObject verseObj, details, manna;
         try {
-            apiUrl = "https://beta.ourmanna.com/api/v1/get?format=json&order=daily";
+            apiUrl = Connect .mannaURL() + "/api/v1/get?format=json&order=daily";
             url = new URL(apiUrl);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
